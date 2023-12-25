@@ -7,12 +7,17 @@ import { Todo } from '../../Todo';
   styleUrl: './todo-items.component.scss'
 })
 export class TodoItemsComponent {
+
   @Input() todo!: Todo;
   @Output() todoDelete: EventEmitter<Todo> = new EventEmitter();
+  @Output() todoChecked: EventEmitter<Todo> = new EventEmitter();
 
   onClickDelete(todo: Todo) {
     this.todoDelete.emit(todo);
     console.log("onClickDelete Triggered");
   }
 
+  onCheckBoxClick(todo: Todo) {
+    this.todoChecked.emit(todo);
+  }
 }

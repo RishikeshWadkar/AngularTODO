@@ -21,7 +21,13 @@ export class TodosComponent {
     console.log(todo);
     this.todos.push(todo);
   }
-  
+
+  checkTodo(todo: Todo){
+    console.log("Todo checked");
+    const indexOfTodoToBeChecked = this.todos.indexOf(todo);
+    this.todos[indexOfTodoToBeChecked].active = !this.todos[indexOfTodoToBeChecked].active;
+  }  
+
   constructor() {
     this.todos = [];
   }

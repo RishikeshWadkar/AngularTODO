@@ -4,5 +4,5 @@
 <div *ngIf="this.todos.length === 0">No Todos to display</div>
 
 <ul *ngFor="let todo of todos">
-    <app-todo-items [todo]="todo" (todoDelete)="deleteTodo($event)"></app-todo-items>
+    <app-todo-items [todo]="todo" (todoDelete)="deleteTodo($event)" (todoChecked)="checkTodo($event)"></app-todo-items>
 </ul>
