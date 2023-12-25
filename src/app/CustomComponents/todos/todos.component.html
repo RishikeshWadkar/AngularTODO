@@ -10,4 +10,8 @@
         <app-todo-items [todo]="todo" (todoDelete)="deleteTodo($event)"
             (todoChecked)="checkTodo($event)"></app-todo-items>
     </ul>
+
+    <ul *ngFor="let friend of friends">
+        <p>{{friend.firstName}} - {{friend.lastName}} </p>
+    </ul>
 </div>

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Todo } from '../../Todo';
+import { HttpClient } from '@angular/common/http';
+import { Friend } from '../../Friend';
+import { Observable } from 'rxjs/internal/Observable';
 
 
 @Component({
@@ -10,6 +13,9 @@ import { Todo } from '../../Todo';
 export class TodosComponent {
 
   todos: Todo[];
+  friends!:Friend[];
+  private friendsUrl = "http://localhost:9001/friends";
+
 
   deleteTodo(todo: Todo) {
     console.log(todo);
@@ -22,13 +28,21 @@ export class TodosComponent {
     this.todos.push(todo);
   }
 
-  checkTodo(todo: Todo){
+  checkTodo(todo: Todo) {
     console.log("Todo checked");
     const indexOfTodoToBeChecked = this.todos.indexOf(todo);
     this.todos[indexOfTodoToBeChecked].active = !this.todos[indexOfTodoToBeChecked].active;
-  }  
+  }
 
-  constructor() {
+  constructor(private client: HttpClient) {
     this.todos = [];
+  }
+
+  ngOnInit() {
+    this.getFriendsList().subscribe((data) => this.friends = data);
+  }
+
+  public getFriendsList(): Observable<Friend[]>{
+    return this.client.get<Friend[]>(`${this.friendsUrl}`);
   }
 }
