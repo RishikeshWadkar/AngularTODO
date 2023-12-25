@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Todo } from '../../todo';
+import { Todo } from '../../Todo';
+
 
 @Component({
   selector: 'app-todos',
@@ -7,27 +8,21 @@ import { Todo } from '../../todo';
   styleUrl: './todos.component.scss'
 })
 export class TodosComponent {
-  todos:Todo[];
+
+  todos: Todo[];
+
+  deleteTodo(todo: Todo) {
+    console.log(todo);
+    const indexOfTodoToBeDeleted = this.todos.indexOf(todo);
+    this.todos.splice(indexOfTodoToBeDeleted, 1);
+  }
+
+  addTodo(todo: Todo) {
+    console.log(todo);
+    this.todos.push(todo);
+  }
+  
   constructor() {
-    this.todos = [
-      {
-        sno:1,
-        title:"Do some work",
-        desc: "Just do it!",
-        active: true
-      },
-      {
-        sno:2,
-        title:"Do some work",
-        desc: "Just do it!",
-        active: true
-      },
-      {
-        sno:3,
-        title:"Do some work",
-        desc: "Just do it!",
-        active: true
-      }
-    ]
+    this.todos = [];
   }
 }
